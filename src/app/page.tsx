@@ -1,13 +1,13 @@
 "use client";
-import { Votes } from '@/components/voting';
-
+import { BaseStude } from "@/components/base";
+import { Students } from "@/data/people";
 const Page = () => {
     return (
-        <>
-            <Votes rate={5}/>
-            
+     <div className="container mx-auto">
 
-        </>
+     <BaseStude people = {Students}/>
+
+     </div>
     );
 }
 
