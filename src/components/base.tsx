@@ -7,6 +7,7 @@ import { AllStudents } from '@/types/typeg';
 
   export const BaseStude = ({people}:Props) => {
     function handleClick() {
+     alert('clicked') 
     }
   return (
      <div>
