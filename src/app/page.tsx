@@ -5,7 +5,7 @@ const Page = () => {
     return (
      <div className="container mx-auto">
 
-     <BaseStude people = {Students}/>
+      <BaseStude people = {Students}/>
 
      </div>
     );
