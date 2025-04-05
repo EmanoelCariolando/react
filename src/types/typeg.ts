@@ -1,7 +1,6 @@
-export type firstName = {
+export type completName = {
     name: string;
-}
-export type lastName = {
     lastName: string;
 }
+
   
