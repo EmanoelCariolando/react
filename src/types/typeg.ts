@@ -1,6 +1,10 @@
-export type completName = {
-    name: string;
-    lastName: string;
-}
+export type toDo= 
+{ 
+  id: number,
+  label: string,
+  check: boolean,
+
+     }
+
 
   
