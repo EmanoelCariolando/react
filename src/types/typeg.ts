@@ -1,10 +1,9 @@
-export type toDo= 
-{ 
-  id: number,
-  label: string,
-  check: boolean,
+export type Photo = 
+ {
+    id :number, 
+    img: string
+ }
 
-     }
 
 
   
