@@ -26,8 +26,8 @@ const Page = () => {
   return (
     <div>
       <div className="w-screen h-screen flex justify-center items-center flex-col">
-        <h1 className="font-bold text-xl">Perfil Photos</h1>
-        <div className="flex justify-center items-center flex-wrap flex-row ">
+        <h1 className="font-bold text-3xl m-5">Perfil Photos</h1>
+        <div className=" container max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {allPhotos.map(e => (
             <PhotoItem
               key={e.id}
