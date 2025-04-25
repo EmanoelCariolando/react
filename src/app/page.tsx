@@ -1,45 +1,58 @@
 "use client";
 
-import { PhotoItem } from "@/components/base";
-import { Modal } from "@/components/modal";
-import { allPhotos } from "@/data/people";
 import { useState } from "react";
+import { allQuestions } from "@/data/people";
+import { QuestionItem } from "@/components/base";
+import { Resultados } from "@/components/resulta";
 
 
 const Page = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [photo, setPhoto] = useState('');
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answersA, setAnswers] = useState<number[]>([])
+  const [results, showResults] = useState(false)
 
-  const handlePhotoClick = (id: number) => {
-    const selectedPhoto = allPhotos.find(e => e.id === id);
-    if (selectedPhoto) {
-      setPhoto(selectedPhoto.img);
-      setShowModal(true);
-    }
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-    setPhoto('');
+  const loadNextQuestion = () => {
+   if(allQuestions[currentQuestion + 1])
+    setCurrentQuestion(currentQuestion + 1)
+  else {
+    showResults(true)
+  }
   }
 
+
+  const handle = (answer: number) => {
+    setAnswers([...answersA, answer]);
+    loadNextQuestion()
+  }
+  
+  const title = "🎮 Gamer Quiz"
+
   return (
-    <div>
-      <div className="w-screen h-screen flex justify-center items-center flex-col">
-        <h1 className="font-bold text-3xl m-5">Perfil Photos</h1>
-        <div className=" container max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-          {allPhotos.map(e => (
-            <PhotoItem
-              key={e.id}
-              photos={e}
-              onClick={() => handlePhotoClick(e.id)}
+     <div className=" w-full h-screen flex items-center justify-center bg-gray-600">
+        <div className="bg-white text-black rounded-md shadow shadow-black w-full max-w-xl">
+          <h1 className="m-2 text-2xl font-bold">{title}</h1>
+  
+          <div className="text-center p-4 border border-t border-gray-800 rounded-md m-2 hover:text-black">
+            {!results &&
+            <QuestionItem 
+              question={allQuestions[currentQuestion]}
+              count={currentQuestion + 1}
+              onAnswer={handle}
             />
-          ))}
+            }
+            { results &&
+              <Resultados questions={allQuestions} answers={answersA} />
+            }
+          </div>
+          <div className="flex justify-center items-center">
+          { !results &&
+             <div className="text-center text-xs mt-5 mb-2 font-bold"> {currentQuestion + 1} questions de {allQuestions.length}</div>
+          }  
+          { results &&
+             <div className="text-white bg-blue-600 rounded-2xl p-2 m-5 font-bold text-center cursor-pointer ">Restart</div>
+          }  
+          </div>
         </div>
-      </div>
-      {showModal && 
-       <Modal image={photo} closeModal={closeModal} />
-       }
     </div>
   );
 };

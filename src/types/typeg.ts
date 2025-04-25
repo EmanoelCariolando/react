@@ -1,7 +1,8 @@
-export type Photo = 
+export type Questions = 
  {
-    id :number, 
-    img: string
+    question :any, 
+    options: string[],
+    aswer: number;
  }
 
 
