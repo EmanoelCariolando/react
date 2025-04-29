@@ -1,29 +1,18 @@
-import { useEffect, useRef } from "react";
+import { div } from "framer-motion/client"
 
 
- type Props = {
-  src: string;
-  isPlaying: boolean;
- } 
-
- export const VideoPlayer = ( {src,isPlaying}: Props )=> {
-    const videoTag = useRef<HTMLVideoElement>(null);
 
 
-    useEffect(() => {
-        if(isPlaying) {
-            videoTag.current?.play()
-        } else {
-            videoTag.current?.pause()
-        }
-    })
 
+ export const Square = ( )=> {
+    
 
   return (
  
-      <video ref={videoTag} src={src} loop playsInline></video>
+   <div className="w-30 h-30 bg-amber-600 ">
+     
+   </div>
       
-
   )
 
  }
